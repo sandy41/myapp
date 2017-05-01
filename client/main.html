@@ -1,0 +1,32 @@
+<head>
+  <title>my_cool_app</title>
+</head>
+
+<body>
+  {{> tasks}}
+</body>
+
+<template name="tasks">
+ {{> loginButtons}}
+ <h1> Add Task </h1>
+  {{#if currentUser}}
+  <form class="add-task">
+   <label> Task Name </label>
+   <input type="text" name="name" placeholder="task name">
+   <input type="submit" value="Submit" /> 
+  </form> 
+  {{else}}
+    <p> Please login to add tasks </p>
+  {{/if}}
+ <ul>
+  {{#each tasks}}
+    {{#if isOwner}}
+      <li>
+      <span class="text"> {{name}} </span>
+      <button class="delete-task">Remove</button>
+      </li>
+    {{/if}}
+  {{/each}}
+ </ul>
+</template>
+
